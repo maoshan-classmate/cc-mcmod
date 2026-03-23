@@ -1,0 +1,7 @@
+{
+  "item.shanmod.example_item": "Example Item",
+  "block.shanmod.example_block": "Example Block",
+  "item.shanmod.amulet": "Maoshan's Protection",
+  "item.shanmod.amulet.tooltip": "Grants invincibility while in your inventory.",
+  "itemGroup.shanmod": "Shan Mod"
+}

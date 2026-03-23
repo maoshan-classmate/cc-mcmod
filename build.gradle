@@ -1,0 +1,12 @@
+// Root project - only apply basic plugins
+// Minecraft/Forge configuration is in subprojects only
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+}
+
+// Load gradle.properties and make it available to all subprojects via rootProject
+def props = new Properties()
+file('gradle.properties').withInputStream { props.load(it) }
+rootProject.ext.set("mcmod_props", props)

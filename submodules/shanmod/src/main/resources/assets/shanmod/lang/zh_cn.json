@@ -1,0 +1,7 @@
+{
+  "item.shanmod.example_item": "示例物品",
+  "block.shanmod.example_block": "示例方块",
+  "item.shanmod.amulet": "猫山的庇护",
+  "item.shanmod.amulet.tooltip": "得到猫山的庇护，物品在背包内即获得无敌状态。",
+  "itemGroup.shanmod": "Shan模组"
+}
