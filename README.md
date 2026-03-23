@@ -1,4 +1,4 @@
-# ShanMod - Minecraft Forge 多模块模组项目
+# cc-mcmod - Minecraft Forge 多模块模组项目
 
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-brightgreen)
 ![Forge](https://img.shields.io/badge/Forge-47.3.0-orange)
