@@ -1,20 +1,24 @@
-# ShanMod - Minecraft Forge 模组
+# ShanMod - Minecraft Forge 多模块模组项目
 
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-brightgreen)
 ![Forge](https://img.shields.io/badge/Forge-47.3.0-orange)
 ![Java](https://img.shields.io/badge/Java-JDK%2017-blue)
 
-> 本模组完全由 **Claude Code** AI 助手开发。
+> 本项目完全由 **Claude Code** AI 助手开发。
 
 ## 简介
 
-ShanMod 是一个基于 Minecraft Forge 1.20.1 的模组，使用 Java 17 开发。本项目的所有代码、文档及构建配置均由 Claude Code AI 助手编写和整理。
+本项目是一个基于 Minecraft Forge 1.20.1 的多模块模组框架，使用 Java 17 开发。所有代码、文档及构建配置均由 Claude Code AI 助手编写和整理。
 
-## 功能特性
+**注意**：ShanMod 是当前已集成的模组之一，后续将陆续添加更多模组。
 
-### 猫山的庇护 (AmuletItem)
+## 已集成的模组
 
-当玩家背包中携带「猫山的庇护」护身符时，自动获得以下效果：
+### ShanMod
+
+一个包含「猫山的庇护」护身符的模组。
+
+**功能**：当玩家背包中携带护身符时，自动获得以下效果：
 
 | 效果 | 等级 | 说明 |
 |------|------|------|
@@ -24,6 +28,8 @@ ShanMod 是一个基于 Minecraft Forge 1.20.1 的模组，使用 Java 17 开发
 | 夜视 | 满级 | 黑暗中清晰视物 |
 | 生命恢复 | 自动 | 血量不满时持续恢复 |
 | 炫酷光环 | 持续 | 角色周围显示粒子特效 |
+
+**指令**：`/ms xmnxy`（OP权限）- 获得护身符
 
 ## 快速开始
 
@@ -39,7 +45,7 @@ ShanMod 是一个基于 Minecraft Forge 1.20.1 的模组，使用 Java 17 开发
 # 构建所有模块
 ./gradlew build
 
-# 仅构建 shanmod 模块
+# 仅构建某个模块
 ./gradlew :submodules:shanmod:build
 ```
 
@@ -49,17 +55,7 @@ ShanMod 是一个基于 Minecraft Forge 1.20.1 的模组，使用 Java 17 开发
 
 ### 安装
 
-构建完成后，将生成的 jar 文件复制到 Minecraft mods 文件夹：
-
-```
-submodules/shanmod/build/libs/shanmod-1.0.0.jar
-```
-
-## 指令
-
-| 指令 | 权限 | 说明 |
-|------|------|------|
-| `/ms xmnxy` | OP | 获得一个猫山的庇护 |
+构建完成后，将生成的 jar 文件复制到 Minecraft mods 文件夹。
 
 ## 项目结构
 
@@ -69,7 +65,7 @@ mc_mod/                           # 根项目
 ├── settings.gradle                # 多模块配置
 ├── gradle.properties              # 版本配置
 └── submodules/
-    └── shanmod/                   # 主模组
+    └── shanmod/                   # ShanMod 模组
         └── src/main/
             ├── java/              # Java 源代码
             └── resources/         # 资源文件
