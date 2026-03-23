@@ -2,6 +2,9 @@
 
 ## 项目概述
 
+**GitHub**: https://github.com/maoshan-classmate/cc-mcmod
+**GitHub CLI**: `C:\Program Files\GitHub CLI\gh`（bash 中需用完整路径调用）
+
 **注意**：本项目已改造为多模块架构，支持管理多个 Minecraft mod。
 
 - **父项目**: mc_mod (根项目)
