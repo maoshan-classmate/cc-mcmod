@@ -1,0 +1,40 @@
+[     144ms] [ERROR] Docusaurus React Root onRecoverableError: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at ls (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:513030)
+    at wc (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:585782)
+    at yd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573352)
+    at vd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573324)
+    at od (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:568405)
+    at x (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:633618)
+    at MessagePort.C (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:634150) {componentStack: 
+    at p
+    at iframe
+    at u (https://docs.neo…eoforged.net/assets/js/main.c91cd1da.js:2:602635), digest: null} @ https://docs.neoforged.net/assets/js/main.c91cd1da.js:1
+[     145ms] [ERROR] Docusaurus React Root onRecoverableError: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at ls (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:513030)
+    at wc (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:585782)
+    at yd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573352)
+    at vd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573324)
+    at od (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:568405)
+    at x (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:633618)
+    at MessagePort.C (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:634150) {componentStack: 
+    at nav
+    at p (https://docs.neoforged.net/a…eoforged.net/assets/js/main.c91cd1da.js:2:602635), digest: null} @ https://docs.neoforged.net/assets/js/main.c91cd1da.js:1
+[     145ms] [ERROR] Docusaurus React Root onRecoverableError: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at ls (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:513030)
+    at wc (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:585782)
+    at yd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573352)
+    at vd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573324)
+    at od (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:568405)
+    at x (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:633618)
+    at MessagePort.C (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:634150) {componentStack: 
+    at footer
+    at ft (https://docs.neoforged.n…eoforged.net/assets/js/main.c91cd1da.js:2:602635), digest: null} @ https://docs.neoforged.net/assets/js/main.c91cd1da.js:1
+[     145ms] [ERROR] Docusaurus React Root onRecoverableError: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at wc (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:585468)
+    at yd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573352)
+    at gd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573280)
+    at hd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:573143)
+    at sd (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:569978)
+    at od (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:568533)
+    at x (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:633618)
+    at MessagePort.C (https://docs.neoforged.net/assets/js/main.c91cd1da.js:2:634150) {componentStack: , digest: null} @ https://docs.neoforged.net/assets/js/main.c91cd1da.js:1

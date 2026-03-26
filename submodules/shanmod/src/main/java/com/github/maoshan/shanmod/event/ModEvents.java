@@ -2,6 +2,7 @@ package com.github.maoshan.shanmod.event;
 
 import com.github.maoshan.shanmod.init.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -9,20 +10,16 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent.Post;
 
 import java.util.Random;
-import java.util.UUID;
 import java.util.random.RandomGenerator;
 
-@Mod.EventBusSubscriber(modid = "shanmod")
 public class ModEvents {
     private static final int EFFECT_DURATION = Integer.MAX_VALUE; // 永久效果
     private static final RandomGenerator RANDOM = new Random();
-    private static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("a1b2c3d4-e5f6-7890-abcd-ef1234567890");
+    private static final ResourceLocation KNOCKBACK_RESISTANCE_ID = ResourceLocation.fromNamespaceAndPath("shanmod", "amulet_knockback_resistance");
 
     /**
      * 检查玩家背包是否含有护身符
@@ -37,12 +34,8 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.START) {
-            return;
-        }
-
-        Player player = event.player;
+    public static void onPlayerTick(Post event) {
+        Player player = event.getEntity();
         if (player.level().isClientSide()) {
             return;
         }
@@ -63,13 +56,12 @@ public class ModEvents {
             }
 
             // 击退抗性（通过属性实现）
-            if (player.getAttribute(Attributes.KNOCKBACK_RESISTANCE).getModifier(KNOCKBACK_RESISTANCE_UUID) == null) {
+            if (player.getAttribute(Attributes.KNOCKBACK_RESISTANCE).getModifier(KNOCKBACK_RESISTANCE_ID) == null) {
                 player.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addPermanentModifier(
                     new AttributeModifier(
-                        KNOCKBACK_RESISTANCE_UUID,
-                        "Amulet Knockback Resistance",
+                        KNOCKBACK_RESISTANCE_ID,
                         1.0,  // 100% 击退抗性
-                        AttributeModifier.Operation.ADDITION
+                        AttributeModifier.Operation.ADD_VALUE
                     )
                 );
             }
@@ -145,10 +137,10 @@ public class ModEvents {
                     1, 0.01, 0.01, 0.01, 0.01);
             }
 
-            // 内圈：SPELL_MOB 魔法光环（紫色旋转）- 半径0.5
+            // 内圈：WITCH 魔法光环（紫色旋转）- 半径0.5
             for (int i = 0; i < 2; i++) {
                 double a = angle * 1.5 + (i * Math.PI);
-                serverLevel.sendParticles(ParticleTypes.ENTITY_EFFECT,
+                serverLevel.sendParticles(ParticleTypes.WITCH,
                     player.getX() + Math.cos(a) * 0.5,
                     player.getY() + 0.5,
                     player.getZ() + Math.sin(a) * 0.5,
@@ -178,22 +170,8 @@ public class ModEvents {
                 player.removeEffect(MobEffects.NIGHT_VISION);
             }
             // 移除击退抗性属性
-            if (player.getAttribute(Attributes.KNOCKBACK_RESISTANCE).getModifier(KNOCKBACK_RESISTANCE_UUID) != null) {
-                player.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(KNOCKBACK_RESISTANCE_UUID);
-            }
-        }
-    }
-
-    /**
-     * 击退抗性实现 - 通过事件拦截
-     * 当玩家持有护身符时，完全抵消所有击退效果
-     */
-    @SubscribeEvent
-    public static void onLivingKnockBack(LivingKnockBackEvent event) {
-        if (event.getEntity() instanceof Player player) {
-            if (hasAmulet(player)) {
-                // 完全抵消击退：将力量设为0
-                event.setStrength(0);
+            if (player.getAttribute(Attributes.KNOCKBACK_RESISTANCE).getModifier(KNOCKBACK_RESISTANCE_ID) != null) {
+                player.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(KNOCKBACK_RESISTANCE_ID);
             }
         }
     }

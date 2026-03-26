@@ -4,9 +4,8 @@ import com.github.maoshan.shanmod.ShanMod;
 import com.github.maoshan.shanmod.item.AmuletItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 /**
  * 物品注册类
@@ -18,7 +17,7 @@ public class ModItems {
         DeferredRegister.create(Registries.ITEM, ShanMod.MODID);
 
     // 猫山的庇护 - 放在背包即生效
-    public static final RegistryObject<Item> AMULET_ITEM = ITEMS.register(
+    public static final DeferredHolder<Item, Item> AMULET_ITEM = ITEMS.register(
         "amulet",
         AmuletItem::new
     );

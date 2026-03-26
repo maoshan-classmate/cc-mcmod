@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "openmemory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mem0-cnlfjzigaku8gczkzo.mem0.volces.com:8000/mcp/volces/sse/f64aa076-2978-5827-8606-81ab798d241c",
+        "--header",
+        "Authorization: Bearer f64aa076-2978-5827-8606-81ab798d241c",
+        "--transport",
+        "sse-only"
+      ]
+    }
+  }
+}

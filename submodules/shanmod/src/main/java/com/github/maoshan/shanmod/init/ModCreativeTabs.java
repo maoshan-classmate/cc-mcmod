@@ -5,8 +5,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 /**
  * 创造模式标签页注册类
@@ -17,7 +17,7 @@ public class ModCreativeTabs {
         DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ShanMod.MODID);
 
     // 自定义创造模式标签页
-    public static final RegistryObject<CreativeModeTab> SHAN_TAB =
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SHAN_TAB =
         CREATIVE_MODE_TABS.register("shan_tab", () ->
             CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + ShanMod.MODID))
