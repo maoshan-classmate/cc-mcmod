@@ -1,4 +1,4 @@
-# ShanMod - Minecraft Forge 1.20.1 多模块模组项目
+# ShanMod - NeoForge 1.21.1 多模块模组项目
 
 ## 项目概述
 
@@ -8,9 +8,9 @@
 **注意**：本项目已改造为多模块架构，支持管理多个 Minecraft mod。
 
 - **父项目**: mc_mod (根项目)
-- **Minecraft版本**: 1.20.1
-- **Forge版本**: 47.3.0
-- **Java**: JDK 17 (ms-17.0.16)
+- **Minecraft版本**: 1.21.1
+- **NeoForge版本**: 21.1.31
+- **Java**: JDK 21 (ms-21.0.10)
 - **构建工具**: Gradle
 
 ## 多模块结构
@@ -37,20 +37,28 @@ mc_mod/                           # 根项目（父工程）
 - **processResources expand 闭包属性**: ForgeGradle 的 `expand()` 闭包中引用的变量必须是本地 def 变量，不能依赖 project.ext（闭包求值时机晚于 project.ext 设置）
 - **Minecraft mods 文件夹不会自动更新**: 重新构建后需要手动复制 jar 到 Minecraft mods 文件夹，build/libs/ 中的 jar 不会自动同步
 
+### neoforge.mods.toml 必填字段（NeoForge 1.21+）
+- `license` 必须在顶层（[[mods]] 之外），不是 [[mods]] 内部
+- `loaderVersion="[4,)"` (javafml版本)，不是 `${neo_version_range}`
+- 示例：license="MIT" 在 modLoader 之后、`[[mods]]` 之前
+
 ## 构建命令
 
 ```bash
 # 构建所有模块
-JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-17.0.16" ./gradlew build --no-daemon
+JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-21.0.10" ./gradlew build --no-daemon
 
 # 仅构建 shanmod 模块
-JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-17.0.16" ./gradlew :submodules:shanmod:build --no-daemon
+JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-21.0.10" ./gradlew :submodules:shanmod:build --no-daemon
 
 # 清理
-JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-17.0.16" ./gradlew clean --no-daemon
+JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-21.0.10" ./gradlew clean --no-daemon
 ```
 
 **IDE测试**: 使用 IntelliJ IDEA 打开根项目（mc_mod），运行 `runClient` 配置启动游戏
+
+### pack.mcmeta
+`pack_format` 值因版本而异：1.21.1 = 48, 1.20.1 = 34
 
 ## 子模块：shanmod
 
@@ -162,23 +170,23 @@ public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 - 模型引用: `shanmod:item/amulet`
 - Minecraft会自动在 `textures/item/` 子目录查找纹理
 
-### Forge事件注册
+### NeoForge 1.21+ 事件总线（重要！）
+NeoForge 严格分离 MOD bus 和 GAME bus：
+- `modBus` (MOD总线): 用于 DeferredRegister、`IModBusEvent` 事件
+- `NeoForge.EVENT_BUS` (GAME总线): 用于 `PlayerTickEvent`、`RegisterCommandsEvent` 等游戏事件
 ```java
-// 在主类的构造函数中注册
-MinecraftForge.EVENT_BUS.register(new ModEvents());
-MinecraftForge.EVENT_BUS.register(new ModCommands());
+// ShanMod 构造函数中
+ModBlocks.BLOCKS.register(modBus);        // MOD总线
+NeoForge.EVENT_BUS.register(ModEvents.class);    // GAME总线 - 静态方法用.class
+NeoForge.EVENT_BUS.register(ModCommands.class); // GAME总线 - 命令用RegisterCommandsEvent
 ```
 
 ## 历史问题记录
 
-### 事件总线注册（重要）
-带有 `@SubscribeEvent` 注解的主类方法必须显式注册到 `MinecraftForge.EVENT_BUS`：
-```java
-// 在主类构造函数中注册
-MinecraftForge.EVENT_BUS.register(this);
-```
-**症状**：命令不存在、`ServerStartingEvent` 不触发、服务端事件完全不生效
-**原因**：主类有 `@SubscribeEvent` 方法但未调用 `register(this)`
+### 事件总线注册（NeoForge 1.21+）
+**症状**（NeoForge 1.21+）："has @SubscribeEvent annotation, but takes an argument that is not valid for this busclass"
+**原因**：事件注册到了错误的总线（MOD bus vs GAME bus）
+**解决**：GAME总线事件用 `NeoForge.EVENT_BUS.register(ClassName.class)`
 
 ### Curios 饰品系统（已移除）
 - 原计划使用Curios让物品可装备到项链槽位
@@ -230,7 +238,7 @@ private static final Random RANDOM = new Random();
 ## 网络访问
 - `WebFetch` 可能对部分域名失败（如 mcjty.eu, minecraft.wiki）
 - 如遇失败，使用 Playwright `browser_navigate` 工具代替
-- Forge 文档正确路径: `/concepts/events/` 而非 `/events/`
+- NeoForge 文档: `https://docs.neoforged.net/docs/gettingstarted/`
 
 ## 本地文档
 - 完整开发文档位于 `docs/` 目录

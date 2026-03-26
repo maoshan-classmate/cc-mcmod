@@ -1,14 +1,14 @@
-# cc-mcmod - Minecraft Forge 多模块模组项目
+# cc-mcmod - Minecraft NeoForge 多模块模组项目
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-brightgreen)
-![Forge](https://img.shields.io/badge/Forge-47.3.0-orange)
-![Java](https://img.shields.io/badge/Java-JDK%2017-blue)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-brightgreen)
+![NeoForge](https://img.shields.io/badge/NeoForge-21.1.31-orange)
+![Java](https://img.shields.io/badge/Java-JDK%2021-blue)
 
 > 本项目完全由 **Claude Code** AI 助手开发。
 
 ## 简介
 
-本项目是一个基于 Minecraft Forge 1.20.1 的多模块模组框架，使用 Java 17 开发。所有代码、文档及构建配置均由 Claude Code AI 助手编写和整理。
+本项目是一个基于 Minecraft NeoForge 1.21.1 的多模块模组框架，使用 Java 21 开发。所有代码、文档及构建配置均由 Claude Code AI 助手编写和整理。
 
 **注意**：ShanMod 是当前已集成的模组之一，后续将陆续添加更多模组。
 
@@ -35,18 +35,18 @@
 
 ### 环境要求
 
-- JDK 17 (ms-17.0.16 或更高)
-- Minecraft 1.20.1
-- Minecraft Forge 47.3.0
+- JDK 21 (ms-21.0.10 或更高)
+- Minecraft 1.21.1
+- NeoForge 21.1.31
 
 ### 构建
 
 ```bash
 # 构建所有模块
-./gradlew build
+JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-21.0.10" ./gradlew build --no-daemon
 
 # 仅构建某个模块
-./gradlew :submodules:shanmod:build
+JAVA_HOME="/c/Users/WINDOWS/.jdks/ms-21.0.10" ./gradlew :submodules:shanmod:build --no-daemon
 ```
 
 ### 运行
@@ -73,9 +73,9 @@ mc_mod/                           # 根项目
 
 ## 技术栈
 
-- **Minecraft**: 1.20.1
-- **Forge**: 47.3.0
-- **Java**: JDK 17
+- **Minecraft**: 1.21.1
+- **NeoForge**: 21.1.31
+- **Java**: JDK 21
 - **构建工具**: Gradle 8.8
 
 ## 许可证
